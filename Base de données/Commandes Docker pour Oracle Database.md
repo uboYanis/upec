@@ -39,7 +39,7 @@ docker run --name oracle-db -d -p 1521:1521 -e ORACLE_PWD=admin container-regist
 ```bash
 docker ps
 ```
--  **`docker ps`** : Cette commande affiche une liste des conteneurs Docker en cours d'exécution.
+-  **`docker ps`** : Cette commande affiche la liste des conteneurs Docker en cours d'exécution.
     -    Vous pouvez voir des détails tels que l'ID du conteneur, le nom, l'état, le port mappé, etc.
 
 ## 5. Se connecter à la base de données Oracle
