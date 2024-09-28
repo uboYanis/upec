@@ -44,6 +44,8 @@ docker ps
 
 ## 5. Se connecter à la base de données Oracle
 
+> **Avertissement :** Il faut patienter un peu (30 secondes) pour s'assurer que le conteneur démarre complètement avant de lancer la commande suivante.
+
 ```bash
 docker exec -it oracle-db sqlplus sys/admin@//localhost:1521/FREEPDB1 as SYSDBA
 ```
