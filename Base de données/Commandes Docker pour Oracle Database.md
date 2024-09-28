@@ -3,7 +3,7 @@
 ## 1. Tirer l'image Docker d'Oracle Database
 
 ```bash
-docker pull container-registry.oracle.com/database/free:latest` 
+docker pull container-registry.oracle.com/database/free:latest
 ```
 
 -   **`docker pull`** : Cette commande télécharge une image Docker à partir d'un registre.
