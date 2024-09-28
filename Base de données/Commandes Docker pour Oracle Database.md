@@ -59,8 +59,3 @@ docker exec -it oracle-db sqlplus sys/admin@//localhost:1521/FREEPDB1 as SYSDBA
     -   **`localhost:1521`** : Adresse et port où la base de données est accessible (ici, depuis l'hôte local).
     -   **`FREEPDB1`** : Nom de la base de données à laquelle nous nous connectons.
 -   **`as SYSDBA`** : Cela spécifie que nous voulons nous connecter avec des privilèges d'administrateur.
-
-
-<details><summary>Click this!</summary>
-Here is some more text that was hidden before.
-</details>
