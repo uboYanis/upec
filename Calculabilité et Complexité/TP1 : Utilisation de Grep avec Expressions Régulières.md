@@ -3,200 +3,150 @@
 ## Objectif du TP
 L'objectif de ce TP est de se familiariser avec l'utilisation de l'outil `grep` pour effectuer des recherches de motifs dans des fichiers texte. Nous explorerons les expressions régulières pour améliorer la précision de nos recherches et apprendrons à utiliser des options avancées de `grep`.
 
+## Prérequis
+- Avoir accès à un terminal Unix/Linux.
+- Connaissance de base des commandes Unix.
+
 ## Création des fichiers de test
 Avant de commencer les exercices, nous allons créer quelques fichiers texte contenant des exemples de données. Voici un script simple pour créer des fichiers de test :
 
 ```bash
 mkdir tp_grep
 cd tp_grep
-echo -e "CGT\nGA\nA B C\nCGT est un syndicat\nBonjour\nAAAGT\nGTA\norganisation\nGroupe GA" > test1.txt
-echo -e "CGT\nGA\nAAAGT\nA\nB\nC\nGroupe CGT\nOrganisation" > test2.txt
-echo -e "Groupe G\nGG\nCGT\nCGT GA\nG\nA\nAA\n" > test3.txt
+echo -e "CGT\nGA\nA B C\nCGT est un syndicat\nBonjour\nAAAGT\nGTA\norganisation\nGroupe GA\nCeci est un exemple.\nQuelle est la situation ?\nA A A\nAAAGT\nCGT GA\nBonjour tout le monde.\n1A\nABAC\nBACGTA\n" > adn.data
+echo -e "root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\ngava:x:1000:1000:gava,,,:/home/gava:/bin/bash\nmysql:x:125:134:MySQL Server,,,:/nonexistent:/bin/false" > passwd.data
+echo -e "CGT\nGA\nA B C\nCGT est un syndicat\nBonjour\nAAAGT\nGTA\norganisation\nGroupe GA\nGroupe G\nGG\nCGT\nCGT GA\nG\nA\nAA\nroot:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\ngava:x:1000:1000:gava,,,:/home/gava:/bin/bash\nmysql:x:125:134:MySQL Server,,,:/nonexistent:/bin/false" > fichier.txt
 ```
 
-Ces fichiers contiendront diverses lignes de texte que nous utiliserons pour tester les commandes `grep`.
+## Concepts de base sur grep
 
-Vérifier le contenu des fichiers
+### Qu'est-ce que grep ?
+`grep` est un utilitaire en ligne de commande utilisé pour rechercher des chaînes de caractères à l'intérieur de fichiers. Il utilise des expressions régulières pour faire correspondre les motifs recherchés.
+
+### Syntaxe de base
+La syntaxe générale de la commande `grep` est la suivante :
+
 ```bash
-ls
-more test1.txt
-more test2.txt
-more test3.txt
+grep [options] motif [fichiers]
 ```
 
-## Exercice 1 : Rechercher des motifs simples
+- `motif` : Le motif que vous souhaitez rechercher, souvent spécifié à l'aide d'expressions régulières.
+- `fichiers` : Les fichiers dans lesquels effectuer la recherche.
 
-### Question 1.a
+### Options courantes
+- `-i` : Ignore la casse lors de la recherche.
+- `-v` : Inverse le critère de recherche (affiche les lignes ne correspondant pas au motif).
+- `-r` : Recherche récursive dans les sous-répertoires.
+- `-E` : Active les expressions régulières étendues (permet des motifs plus complexes).
+- `-n` : Affiche le numéro de ligne des résultats.
+- `-c` : Affiche uniquement le nombre de lignes correspondantes.
+
+## Exercices pratiques
+
+### Exercice 1 : Rechercher des motifs simples
+
+#### Question 1.a
 **Rechercher toutes les lignes contenant le mot "CGT".**
 
-**Indice :** Utilisez simplement `grep` suivi du mot à rechercher.
-
-**Solution :**
 ```bash
-grep "CGT" *.txt
+grep "CGT" adn.data
 ```
 
-**Explication :** Cette commande recherche le mot "CGT" dans tous les fichiers texte du répertoire. Les lignes contenant ce mot seront affichées.
-
----
-
-### Question 1.b
+#### Question 1.b
 **Rechercher toutes les lignes contenant le mot "GA".**
 
-**Indice :** Suivez la même logique que pour la recherche précédente.
-
-**Solution :**
 ```bash
-grep "GA" *.txt
+grep "GA" adn.data
 ```
 
-**Explication :** Cette commande fonctionne de manière identique à la précédente, mais elle recherche les lignes contenant le mot "GA".
+#### Question 1.c
+**Rechercher toutes les lignes ne finissant pas par un caractère de fin de phrase (. ! ? :)**
 
----
-
-## Exercice 2 : Utiliser les expressions régulières
-
-### Question 2.a
-**Rechercher toutes les lignes qui commencent par "A".**
-
-**Indice :** Utilisez le caractère `^` pour indiquer le début de la ligne.
-
-**Solution :**
 ```bash
-grep "^A" *.txt
+grep -v "[.!?:]$" adn.data
 ```
 
-**Explication :** Ici, `^A` indique que nous recherchons toutes les lignes dont le premier caractère est "A". Les lignes correspondantes seront affichées.
+#### Question 1.d
+**Rechercher toutes les lignes où apparaissent plusieurs "A" consécutifs (au moins 2).**
 
----
-
-### Question 2.b
-**Rechercher toutes les lignes qui se terminent par "organisation".**
-
-**Indice :** Utilisez le caractère `$` pour indiquer la fin de la ligne.
-
-**Solution :**
 ```bash
-grep "organisation$" *.txt
+grep "A\{2,\}" adn.data
 ```
 
-**Explication :** Dans cette commande, `organisation$` signifie que nous recherchons les lignes qui se terminent par le mot "organisation".
+#### Question 1.e
+**Rechercher toutes les lignes où plusieurs "A" ne terminent pas la ligne.**
 
----
-
-### Question 2.c
-**Rechercher toutes les lignes contenant soit "CGT" soit "GA".**
-
-**Indice :** Utilisez le caractère `|` pour le "OU".
-
-**Solution :**
 ```bash
-grep "CGT\|GA" *.txt
+grep "A\{2,\}" adn.data | grep -v "A\{2,\}$"
 ```
 
-**Explication :** Ici, nous utilisons `CGT\|GA` pour rechercher les lignes contenant soit "CGT" soit "GA". L'utilisation de `\` permet d'échapper le caractère `|`.
+#### Question 1.f
+**Rechercher les lignes contenant "C", puis "G", puis "T" dans l’ordre, avec n’importe quel caractère entre ces trois caractères.**
 
----
-
-### Question 2.d
-**Rechercher toutes les lignes contenant un mot qui commence par "G" suivi de n'importe quel caractère.**
-
-**Indice :** Utilisez le point `.` qui représente n'importe quel caractère.
-
-**Solution :**
 ```bash
-grep "G." *.txt
+grep "C.*G.*T" adn.data
 ```
 
-**Explication :** Dans cette commande, `G.` signifie que nous recherchons les lignes contenant un mot qui commence par "G" et est suivi de n'importe quel caractère.
+### Exercice 2 : Utiliser des expressions régulières avancées
 
----
+#### Question 2.a
+**Pour un fichier quelconque, donnez une expression régulière qui liste tous les mots contenant une lettre doublée.**
 
-### Question 2.e
-**Rechercher toutes les lignes contenant un nombre quelconque de "A" consécutifs.**
-
-**Indice :** Utilisez `*` pour indiquer zéro ou plusieurs occurrences.
-
-**Solution :**
 ```bash
-grep "A*" *.txt
+grep -E '\b([a-zA-Z])\1\b' fichier.txt
 ```
 
-**Explication :** La commande `A*` recherche les lignes contenant zéro ou plusieurs occurrences de "A". Cela inclut même les lignes qui n'ont pas "A".
+#### Question 2.b
+**Complétez avec une expression régulière qui donne les mots avec lettre doublée qui ne sont pas des noms propres.**
 
----
-
-### Question 2.f
-**Rechercher toutes les lignes contenant exactement trois "A" consécutifs.**
-
-**Indice :** Utilisez `\{n\}` pour spécifier un nombre exact.
-
-**Solution :**
 ```bash
-grep "A\{3\}" *.txt
+grep -E '\b([a-z])([a-z]*)\1\1\b' fichier.txt
 ```
 
-**Explication :** Ici, `A\{3\}` signifie que nous recherchons les lignes contenant exactement trois "A" consécutifs.
+### Exercice 3 : Options avancées de grep
 
----
+#### Question 3.a
+**Rechercher dans le fichier passwd.data tous les utilisateurs dont le nom contient un chiffre.**
 
-## Exercice 3 : Options avancées de `grep`
-
-### Question 3.a
-**Compter le nombre de lignes contenant "CGT" et afficher les numéros de ligne.**
-
-**Indice :** Utilisez l'option `-n` pour afficher les numéros de ligne.
-
-**Solution :**
 ```bash
-grep -n "CGT" *.txt
+grep '[0-9]' passwd.data
 ```
 
-**Explication :** Cette commande affichera les lignes contenant "CGT" avec leur numéro de ligne respectif.
+### Exercice 4 : Recherches avancées avec grep
 
----
+#### Question 4.a
+**Rechercher toutes les lignes d'un fichier contenant un mot qui commence par une voyelle.**
 
-### Question 3.b
-**Rechercher récursivement dans tous les fichiers du répertoire.**
-
-**Indice :** Utilisez l'option `-r` pour une recherche récursive.
-
-**Solution :**
 ```bash
-grep -r "CGT" *
+grep -E '\b[aeiouAEIOU][a-zA-Z]*\b' fichier.txt
 ```
 
-**Explication :** Cette commande recherchera "CGT" dans tous les fichiers, y compris ceux dans les sous-répertoires.
+#### Question 4.b
+**Rechercher les lignes contenant des adresses email.**
 
----
-
-### Question 3.c
-**Afficher le nombre total d'occurrences de "CGT".**
-
-**Indice :** Utilisez l'option `-c` pour compter les occurrences.
-
-**Solution :**
 ```bash
-grep -c "CGT" *.txt
+grep -E '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}' fichier.txt
 ```
 
-**Explication :** Cette commande affichera le nombre de lignes contenant "CGT" dans chaque fichier texte.
+### Exercice 5 : Utilisation de grep avec des fichiers CSV
 
----
+#### Question 5.a
+**Rechercher dans un fichier CSV toutes les lignes contenant un nom spécifique.**
 
-### Question 3.d
-**Afficher le contexte autour des occurrences de "CGT" (2 lignes avant et 2 lignes après).**
-
-**Indice :** Utilisez l'option `-C` suivie d'un nombre pour indiquer le contexte.
-
-**Solution :**
 ```bash
-grep -C 2 "CGT" *.txt
+grep "NomSpecific" fichier.csv
 ```
 
-**Explication :** Cette commande affichera les lignes contenant "CGT" ainsi que 2 lignes avant et 2 lignes après chaque occurrence pour donner du contexte.
+#### Question 5.b
+**Rechercher les lignes d'un fichier CSV où le score d'un élève est supérieur à 80 (en supposant que le score est dans la troisième colonne).**
 
----
+```bash
+awk -F, '$3 > 80' fichier.csv
+```
 
 ## Conclusion
 Ce TP vous a permis de vous familiariser avec l'utilisation de `grep` et les expressions régulières pour rechercher des motifs dans des fichiers texte. Vous avez appris à utiliser des expressions régulières simples et avancées, ainsi que des options pratiques pour améliorer vos recherches.
+
+### Ressources supplémentaires
+- Manuels de `grep` : `man grep`
+- Tutoriels en ligne sur les expressions régulières et `grep`
