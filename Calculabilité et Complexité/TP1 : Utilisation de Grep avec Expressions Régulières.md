@@ -13,7 +13,7 @@ Avant de commencer les exercices, nous allons créer quelques fichiers texte con
 ```bash
 mkdir tp_grep
 cd tp_grep
-echo -e "CGT\nGA\nA B C\nCGT est un syndicat\nBonjour\nAAAGT\nGTA\norganisation\nGroupe GA\nCeci est un exemple.\nQuelle est la situation ?\nA A A\nAAAGT\nCGT GA\nBonjour tout le monde.\n1A\nABAC\nBACGTA\n" > adn.data
+echo -e "test@gmail.com\nCGT\nGA\nA B C\nCGT est un syndicat\nBonjour\nAAAGT\nGTA\norganisation\nGroupe GA\nCeci est un exemple.\nQuelle est la situation ?\nA A A\nAAAGT\nCGT GA\nBonjour tout le monde.\n1A\nABAC\nBACGTA\n" > adn.data
 echo -e "root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\ngava:x:1000:1000:gava,,,:/home/gava:/bin/bash\nmysql:x:125:134:MySQL Server,,,:/nonexistent:/bin/false" > passwd.data
 echo -e "CGT\nGA\nA B C\nCGT est un syndicat\nBonjour\nAAAGT\nGTA\norganisation\nGroupe GA\nGroupe G\nGG\nCGT\nCGT GA\nG\nA\nAA\nroot:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\ngava:x:1000:1000:gava,,,:/home/gava:/bin/bash\nmysql:x:125:134:MySQL Server,,,:/nonexistent:/bin/false" > fichier.txt
 ```
@@ -52,6 +52,8 @@ grep [options] motif [fichiers]
 grep "CGT" adn.data
 ```
 
+**Explication** : Cette commande cherche toutes les lignes dans le fichier `adn.data` qui contiennent le mot "CGT". Le motif est sensible à la casse par défaut, donc "cgt" ne sera pas inclus.
+
 #### Question 1.b
 **Rechercher toutes les lignes contenant le mot "GA".**
 
@@ -59,12 +61,16 @@ grep "CGT" adn.data
 grep "GA" adn.data
 ```
 
+**Explication** : Ici, nous recherchons toutes les lignes contenant "GA". Comme précédemment, la recherche est sensible à la casse.
+
 #### Question 1.c
-**Rechercher toutes les lignes ne finissant pas par un caractère de fin de phrase (. ! ? :)**
+**Rechercher toutes les lignes ne finissant pas par un caractère de fin de phrase (. ! ? :).**
 
 ```bash
 grep -v '[.!?:]$' adn.data
 ```
+
+**Explication** : L'option `-v` inverse le critère de recherche. Cela affiche les lignes qui ne se terminent pas par l'un des caractères de fin de phrase spécifiés.
 
 #### Question 1.d
 **Rechercher toutes les lignes où apparaissent plusieurs "A" consécutifs (au moins 2).**
@@ -73,6 +79,8 @@ grep -v '[.!?:]$' adn.data
 grep "A\{2,\}" adn.data
 ```
 
+**Explication** : Cette commande utilise une expression régulière qui cherche des occurrences de la lettre "A" répétée au moins deux fois de suite.
+
 #### Question 1.e
 **Rechercher toutes les lignes où plusieurs "A" ne terminent pas la ligne.**
 
@@ -80,12 +88,16 @@ grep "A\{2,\}" adn.data
 grep "A\{2,\}" adn.data | grep -v "A\{2,\}$"
 ```
 
+**Explication** : Nous cherchons d'abord les lignes avec plusieurs "A" puis filtrons ces résultats pour exclure celles qui se terminent par "A" répété.
+
 #### Question 1.f
 **Rechercher les lignes contenant "C", puis "G", puis "T" dans l’ordre, avec n’importe quel caractère entre ces trois caractères.**
 
 ```bash
 grep "C.*G.*T" adn.data
 ```
+
+**Explication** : Ici, `.*` représente n'importe quel caractère (y compris aucun) et permet de chercher "C", suivi de "G", puis de "T" dans cet ordre, quelle que soit la distance entre eux.
 
 ### Exercice 2 : Utiliser des expressions régulières avancées
 
@@ -96,12 +108,7 @@ grep "C.*G.*T" adn.data
 grep -E '\b([a-zA-Z])\1\b' fichier.txt
 ```
 
-#### Question 2.b
-**Complétez avec une expression régulière qui donne les mots avec lettre doublée qui ne sont pas des noms propres.**
-
-```bash
-grep -E '\b([a-z])([a-z]*)\1\1\b' fichier.txt
-```
+**Explication** : Cette commande utilise l'option `-E` pour les expressions régulières étendues et recherche les mots contenant des lettres doublées, identifiées par `\1`, qui fait référence à la lettre capturée juste avant.
 
 ### Exercice 3 : Options avancées de grep
 
@@ -112,6 +119,8 @@ grep -E '\b([a-z])([a-z]*)\1\1\b' fichier.txt
 grep '[0-9]' passwd.data
 ```
 
+**Explication** : Cette commande recherche toutes les lignes dans `passwd.data` contenant au moins un chiffre. Cela peut aider à identifier les utilisateurs ayant des noms qui incluent des chiffres.
+
 ### Exercice 4 : Recherches avancées avec grep
 
 #### Question 4.a
@@ -121,12 +130,16 @@ grep '[0-9]' passwd.data
 grep -E '\b[aeiouAEIOU][a-zA-Z]*\b' fichier.txt
 ```
 
+**Explication** : Ici, nous cherchons des mots qui commencent par une voyelle (qu'elle soit en majuscule ou en minuscule) et qui sont suivis de zéro ou plusieurs lettres.
+
 #### Question 4.b
 **Rechercher les lignes contenant des adresses email.**
 
 ```bash
 grep -E '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}' fichier.txt
 ```
+
+**Explication** : Cette commande recherche les lignes qui contiennent des adresses email, en utilisant une expression régulière qui capture le format standard d'une adresse email.
 
 ## Conclusion
 Ce TP vous a permis de vous familiariser avec l'utilisation de `grep` et les expressions régulières pour rechercher des motifs dans des fichiers texte. Vous avez appris à utiliser des expressions régulières simples et avancées, ainsi que des options pratiques pour améliorer vos recherches.
