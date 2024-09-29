@@ -1,4 +1,4 @@
-# TP : Création et Gestion de schémas avec privilèges en utilisant des rôles
+# TP2 : Création et Gestion de schémas avec privilèges en utilisant des rôles
 
 ## Objectif
 - Créer des utilisateurs dans Oracle.
