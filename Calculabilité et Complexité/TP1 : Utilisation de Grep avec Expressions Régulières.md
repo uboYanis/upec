@@ -63,7 +63,7 @@ grep "GA" adn.data
 **Rechercher toutes les lignes ne finissant pas par un caractère de fin de phrase (. ! ? :)**
 
 ```bash
-grep -v "[.!?:]$" adn.data
+grep -v '[.!?:]$' adn.data
 ```
 
 #### Question 1.d
