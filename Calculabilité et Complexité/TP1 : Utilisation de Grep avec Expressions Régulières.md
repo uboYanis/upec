@@ -16,6 +16,14 @@ echo -e "Groupe G\nGG\nCGT\nCGT GA\nG\nA\nAA\n" > test3.txt
 
 Ces fichiers contiendront diverses lignes de texte que nous utiliserons pour tester les commandes `grep`.
 
+Vérifier le contenu des fichiers
+```bash
+ls
+more test1.txt
+more test2.txt
+more test3.txt
+```
+
 ## Exercice 1 : Rechercher des motifs simples
 
 ### Question 1.a
