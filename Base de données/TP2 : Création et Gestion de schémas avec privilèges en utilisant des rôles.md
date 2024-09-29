@@ -21,9 +21,9 @@ docker exec -it oracle-db sqlplus sys/admin@//localhost:1521/FREEPDB1 as SYSDBA
 **Solution :** Créez les utilisateurs suivants : `data_owner`, `data_manager`, et `app_user`.
 
 ```sql
-create user data_owner identified by "Supersecurepassword!";
-create user data_manager identified by "Supersecurepassword!";
-create user app_user identified by "Supersecurepassword!";
+create user data_owner identified by "supersecurepassword";
+create user data_manager identified by "supersecurepassword";
+create user app_user identified by "supersecurepassword";
 ```
 
 **Explication :** Chaque utilisateur est créé avec un mot de passe. Ces utilisateurs auront différents rôles et privilèges dans le système.
@@ -67,7 +67,7 @@ create role data_editor_role;
 **Solution :** Connectez-vous à la base de données avec l'utilisateur `data_owner` et créez une table `customers`.
 
 ```console
-docker exec -it oracle-db sqlplus data_owner/Supersecurepassword!@//localhost:1521/FREEPDB1
+docker exec -it oracle-db sqlplus data_owner/supersecurepassword@//localhost:1521/FREEPDB1
 ```
 
 Ensuite, exécutez :
@@ -116,7 +116,7 @@ grant data_editor_role to data_manager;
 **Solution :** Connectez-vous avec l'utilisateur `data_manager` et insérez des données dans la table `customers`.
 
 ```console
-docker exec -it oracle-db sqlplus data_manager/Supersecurepassword!@//localhost:1521/FREEPDB1
+docker exec -it oracle-db sqlplus data_manager/supersecurepassword@//localhost:1521/FREEPDB1
 ```
 
 Ensuite, exécutez :
@@ -137,7 +137,7 @@ commit; -- Validation de la transaction
 **Solution :** Connectez-vous avec l'utilisateur `app_user` et effectuez une requête pour vérifier les données :
 
 ```console
-docker exec -it oracle-db sqlplus app_user/Supersecurepassword!@//localhost:1521/FREEPDB1
+docker exec -it oracle-db sqlplus app_user/supersecurepassword@//localhost:1521/FREEPDB1
 ```
 
 Ensuite, exécutez :
