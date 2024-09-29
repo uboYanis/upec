@@ -1,3 +1,4 @@
+
 ### TP1 : Création et Gestion de schémas avec privilèges
 
 #### Objectif
@@ -155,5 +156,3 @@
       UPDATE data_owner.customers SET customer_name = 'Iron' WHERE customer_id = 2;
       ``` 
      </details> 
-
-
