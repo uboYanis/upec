@@ -128,25 +128,5 @@ grep -E '\b[aeiouAEIOU][a-zA-Z]*\b' fichier.txt
 grep -E '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}' fichier.txt
 ```
 
-### Exercice 5 : Utilisation de grep avec des fichiers CSV
-
-#### Question 5.a
-**Rechercher dans un fichier CSV toutes les lignes contenant un nom spécifique.**
-
-```bash
-grep "NomSpecific" fichier.csv
-```
-
-#### Question 5.b
-**Rechercher les lignes d'un fichier CSV où le score d'un élève est supérieur à 80 (en supposant que le score est dans la troisième colonne).**
-
-```bash
-awk -F, '$3 > 80' fichier.csv
-```
-
 ## Conclusion
 Ce TP vous a permis de vous familiariser avec l'utilisation de `grep` et les expressions régulières pour rechercher des motifs dans des fichiers texte. Vous avez appris à utiliser des expressions régulières simples et avancées, ainsi que des options pratiques pour améliorer vos recherches.
-
-### Ressources supplémentaires
-- Manuels de `grep` : `man grep`
-- Tutoriels en ligne sur les expressions régulières et `grep`
