@@ -163,6 +163,7 @@
        - **Importance :** Ce privilège est essentiel pour la gestion des données, car il permet aux utilisateurs de supprimer des informations obsolètes ou incorrectes dans la base de données. Sans ce privilège, l'utilisateur ne pourrait pas gérer les erreurs ou les données non valides, compromettant ainsi la qualité de la base.
     Sur le compte data_owner, supprimer la ligne.
 
+      Sur le compte data_owner, supprimer la ligne.
       ```sql
       DELETE FROM data_owner.customers WHERE customer_id = 2;
       ```
