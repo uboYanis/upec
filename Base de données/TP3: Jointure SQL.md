@@ -145,7 +145,7 @@ INSERT INTO produit_commandes (commande_id, produit_id) VALUES
 ## Exercice
 
 
-Exercice 1: Liste des clients avec leurs commandes
+**Exercice 1:** Liste des clients avec leurs commandes
 
 - Question : Écrivez une requête pour obtenir une liste de tous les clients avec leurs commandes. Incluez le nom du client, la ville et le produit commandé.
 
