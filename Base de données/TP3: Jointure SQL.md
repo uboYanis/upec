@@ -142,7 +142,7 @@ INSERT INTO produit_commandes (commande_id, produit_id) VALUES
 
 
 
-================================================
+## Exercice
 
 
 Exercice 1: Liste des clients avec leurs commandes
@@ -158,7 +158,10 @@ INNER JOIN commandes co ON c.client_id = co.client_id;
 ```
 
 Exercice 3: Montant total des commandes par client
-Question : Écrivez une requête pour obtenir le montant total des commandes pour chaque client. Incluez le nom du client et le montant total des commandes.
+
+- Question : Écrivez une requête pour obtenir le montant total des commandes pour chaque client. Incluez le nom du client et le montant total des commandes.
+
+Solution :
 
 ```sql
 sql
@@ -170,7 +173,8 @@ GROUP BY c.nom;
 ```
 
 Exercice 4: Liste des produits commandés avec les clients
-Question : Écrivez une requête pour lister tous les produits commandés avec le nom du client et le montant de chaque commande.
+
+- Question : Écrivez une requête pour lister tous les produits commandés avec le nom du client et le montant de chaque commande.
 
 Solution :
 
@@ -181,7 +185,8 @@ INNER JOIN clients c ON co.client_id = c.client_id;
 ```
 
 Exercice 5: Liste des produits disponibles sans commandes
-Question : Écrivez une requête pour afficher tous les produits qui n'ont pas été commandés.
+
+- Question : Écrivez une requête pour afficher tous les produits qui n'ont pas été commandés.
 
 Solution :
 
@@ -193,7 +198,8 @@ WHERE pc.commande_id IS NULL;
 ```
 
 Exercice 6: Détails des commandes avec informations sur les produits
-Question : Écrivez une requête pour obtenir le détail de chaque commande avec le nom du produit, le montant et la catégorie du produit.
+
+- Question : Écrivez une requête pour obtenir le détail de chaque commande avec le nom du produit, le montant et la catégorie du produit.
 
 Solution :
 
@@ -205,7 +211,8 @@ JOIN produits p ON pc.produit_id = p.produit_id;
 ```
 
 Exercice 7: Compte des commandes par ville
-Question : Écrivez une requête pour compter le nombre de commandes passées par ville.
+
+- Question : Écrivez une requête pour compter le nombre de commandes passées par ville.
 
 Solution :
 
@@ -217,7 +224,8 @@ GROUP BY c.ville;
 ```
 
 Exercice 8: Clients ayant passé plusieurs commandes
-Question : Écrivez une requête pour afficher les clients qui ont passé plus d'une commande.
+
+- Question : Écrivez une requête pour afficher les clients qui ont passé plus d'une commande.
 
 Solution :
 
@@ -230,7 +238,8 @@ HAVING COUNT(co.commande_id) > 1;
 ```
 
 Exercice 9: Produits commandés et leur montant total
-Question : Écrivez une requête pour afficher chaque produit commandé et le montant total généré par chaque produit.
+
+- Question : Écrivez une requête pour afficher chaque produit commandé et le montant total généré par chaque produit.
 
 Solution :
 
@@ -243,7 +252,8 @@ GROUP BY p.nom;
 ```
 
 Exercice 10: Détails des commandes avec clients
-Question : Écrivez une requête pour obtenir les détails des commandes, y compris le nom du client, le produit commandé et le montant.
+
+- Question : Écrivez une requête pour obtenir les détails des commandes, y compris le nom du client, le produit commandé et le montant.
 
 Solution :
 
