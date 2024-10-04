@@ -139,3 +139,118 @@ INSERT INTO produit_commandes (commande_id, produit_id) VALUES
 (6, 6),
 (7, 7);
 ```
+
+
+
+================================================
+
+
+Exercice 1: Liste des clients avec leurs commandes
+Question : Écrivez une requête pour obtenir une liste de tous les clients avec leurs commandes. Incluez le nom du client, la ville et le produit commandé.
+
+Solution :
+
+```sql
+SELECT c.nom AS nom_client, c.ville, co.produit
+FROM clients c
+INNER JOIN commandes co ON c.client_id = co.client_id;
+```
+
+Exercice 3: Montant total des commandes par client
+Question : Écrivez une requête pour obtenir le montant total des commandes pour chaque client. Incluez le nom du client et le montant total des commandes.
+
+```sql
+sql
+Copier le code
+SELECT c.nom AS nom_client, SUM(co.montant) AS total_commandes
+FROM clients c
+INNER JOIN commandes co ON c.client_id = co.client_id
+GROUP BY c.nom;
+```
+
+Exercice 4: Liste des produits commandés avec les clients
+Question : Écrivez une requête pour lister tous les produits commandés avec le nom du client et le montant de chaque commande.
+
+Solution :
+
+```sql
+SELECT c.nom AS nom_client, co.produit, co.montant
+FROM commandes co
+INNER JOIN clients c ON co.client_id = c.client_id;
+```
+
+Exercice 5: Liste des produits disponibles sans commandes
+Question : Écrivez une requête pour afficher tous les produits qui n'ont pas été commandés.
+
+Solution :
+
+```sql
+SELECT p.nom AS produit
+FROM produits p
+LEFT JOIN produit_commandes pc ON p.produit_id = pc.produit_id
+WHERE pc.commande_id IS NULL;
+```
+
+Exercice 6: Détails des commandes avec informations sur les produits
+Question : Écrivez une requête pour obtenir le détail de chaque commande avec le nom du produit, le montant et la catégorie du produit.
+
+Solution :
+
+```sql
+SELECT co.commande_id, co.produit, co.montant, p.categorie
+FROM commandes co
+JOIN produit_commandes pc ON co.commande_id = pc.commande_id
+JOIN produits p ON pc.produit_id = p.produit_id;
+```
+
+Exercice 7: Compte des commandes par ville
+Question : Écrivez une requête pour compter le nombre de commandes passées par ville.
+
+Solution :
+
+```sql
+SELECT c.ville, COUNT(co.commande_id) AS nombre_commandes
+FROM clients c
+INNER JOIN commandes co ON c.client_id = co.client_id
+GROUP BY c.ville;
+```
+
+Exercice 8: Clients ayant passé plusieurs commandes
+Question : Écrivez une requête pour afficher les clients qui ont passé plus d'une commande.
+
+Solution :
+
+```sql
+SELECT c.nom AS nom_client, COUNT(co.commande_id) AS nombre_commandes
+FROM clients c
+INNER JOIN commandes co ON c.client_id = co.client_id
+GROUP BY c.nom
+HAVING COUNT(co.commande_id) > 1;
+```
+
+Exercice 9: Produits commandés et leur montant total
+Question : Écrivez une requête pour afficher chaque produit commandé et le montant total généré par chaque produit.
+
+Solution :
+
+```sql
+SELECT p.nom AS produit, SUM(co.montant) AS montant_total
+FROM produits p
+JOIN produit_commandes pc ON p.produit_id = pc.produit_id
+JOIN commandes co ON pc.commande_id = co.commande_id
+GROUP BY p.nom;
+```
+
+Exercice 10: Détails des commandes avec clients
+Question : Écrivez une requête pour obtenir les détails des commandes, y compris le nom du client, le produit commandé et le montant.
+
+Solution :
+
+```sql
+SELECT c.nom AS nom_client, co.produit, co.montant
+FROM commandes co
+INNER JOIN clients c ON co.client_id = c.client_id;
+```
+
+
+
