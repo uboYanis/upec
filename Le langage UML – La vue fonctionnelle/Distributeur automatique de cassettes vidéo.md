@@ -47,30 +47,27 @@ Magasin --> UC_GererStocks
 ## Scénarios du Cas d'Utilisation « Emprunter une Cassette Vidéo »
 
 ### Scénario Principal : Emprunter une Cassette Vidéo
-
-1. **Initiation du processus** :
-   - L'utilisateur (Client) approche du distributeur automatique de cassettes vidéo.
-  
-2. **Introduction de la carte** :
+ 
+1. **Introduction de la carte** :
    - Le Client insère sa carte magnétique dans le distributeur.
   
-3. **Vérification du crédit** :
+2. **Vérification du crédit** :
    - Le système vérifie le solde disponible sur la carte.
    - **Condition** : Si le crédit est supérieur ou égal à 2D (montant requis pour louer une cassette), le processus continue.
    - **Condition alternative** : Si le crédit est inférieur à 2D, le Client est informé qu'il doit recharger sa carte au magasin.
 
-4. **Sélection de la cassette** :
+3. **Sélection de la cassette** :
    - Le Client parcourt les cassettes disponibles dans le distributeur.
    - Le Client sélectionne une cassette à emprunter.
 
-5. **Récupération de la cassette** :
+4. **Récupération de la cassette** :
    - Le distributeur délivre la cassette sélectionnée au Client.
 
-6. **Confirmation de la location** :
+5. **Confirmation de la location** :
    - Le système met à jour le solde de la carte du Client en déduisant le montant de la location.
    - Le Client reçoit une confirmation de la location (par exemple, un reçu ou un message à l'écran).
 
-7. **Fin du processus** :
+6. **Fin du processus** :
    - Le Client prend la cassette et quitte le distributeur.
 
 ### Scénarios Alternatifs
