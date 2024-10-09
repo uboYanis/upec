@@ -53,8 +53,8 @@ Magasin --> UC_GererStocks
   
 2. **Vérification du crédit** :
    - Le système vérifie le solde disponible sur la carte.
-   - **Condition** : Si le crédit est supérieur ou égal à 2D (montant requis pour louer une cassette), le processus continue.
-   - **Condition alternative** : Si le crédit est inférieur à 2D, le Client est informé qu'il doit recharger sa carte au magasin.
+   - **Condition** : Si le crédit est supérieur ou égal à 2€ (montant requis pour louer une cassette), le processus continue.
+   - **Condition alternative** : Si le crédit est inférieur à 2€, le Client est informé qu'il doit recharger sa carte au magasin.
 
 3. **Sélection de la cassette** :
    - Le Client parcourt les cassettes disponibles dans le distributeur.
