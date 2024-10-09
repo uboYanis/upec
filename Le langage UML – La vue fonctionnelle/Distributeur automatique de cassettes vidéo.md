@@ -100,3 +100,33 @@ Magasin --> UC_GererStocks
 Ces scénarios décrivent les différentes étapes et variations qui peuvent survenir lors du processus d'emprunt d'une cassette vidéo à partir d'un distributeur automatique. Ils permettent de couvrir à la fois le flux principal d'interaction et les exceptions potentielles qui pourraient survenir.
 
 
+## Construire un diagramme de séquence 
+
+
+Voici un diagramme de séquence système pour le scénario nominal du cas d'utilisation « emprunter une cassette vidéo », en utilisant PlantUML.
+Ce diagramme montre les interactions entre le Client, le Distributeur, et le Système de Gestion des Cartes.
+
+```puml
+@startuml
+actor Client
+participant "Distributeur" as Distributeur
+participant "Système de Gestion des Cartes" as System
+
+Client -> Distributeur: Insérer la carte
+Distributeur -> System: Vérifier le crédit
+System --> Distributeur: Crédit disponible (>= 2D)
+Distributeur --> Client: Crédit suffisant, sélectionnez une cassette
+
+Client -> Distributeur: Choisir une cassette
+Distributeur -> Client: Afficher les cassettes disponibles
+
+Client -> Distributeur: Sélectionner la cassette
+Distributeur -> Client: Délivrer la cassette
+
+Distributeur -> System: Débiter le montant de la location
+System --> Distributeur: Montant débité
+Distributeur --> Client: Confirmation de la location
+
+Client -> Distributeur: Prendre la cassette
+@enduml
+```
