@@ -4,7 +4,7 @@
 
 Pour visualiser le diagramme, veuillez utiliser le site 
 
-![use-case](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jonashackt/plantuml-markdown/master/use-case.iuml)
+![use-case](http://www.plantuml.com/plantuml/proxy?cache=no&src=[https://raw.githubusercontent.com/jonashackt/plantuml-markdown/master/use-case.iuml](https://raw.githubusercontent.com/uboYanis/upec/refs/heads/master/Le%20langage%20UML%20%E2%80%93%20La%20vue%20fonctionnelle/use-case.iuml))
 
 ```puml
 @startuml
