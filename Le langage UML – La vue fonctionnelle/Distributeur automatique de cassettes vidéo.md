@@ -2,9 +2,8 @@
 
 ## Diagramme de cas d’utilisation
 
-Pour visualiser le diagramme, veuillez utiliser le site 
+Pour visualiser le diagramme, veuillez utiliser le site https://www.planttext.com/
 
-![use-case](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/uboYanis/upec/refs/heads/master/Le%20langage%20UML%20%E2%80%93%20La%20vue%20fonctionnelle/use-case.iuml)
 
 ```puml
 @startuml
@@ -42,4 +41,5 @@ Magasin --> UC_GererStocks
 }
 
 @enduml
+
 ```
