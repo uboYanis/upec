@@ -4,7 +4,7 @@
 
 Pour visualiser le diagramme, veuillez utiliser le site 
 
-![use-case](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jonashackt/plantuml-markdown/master/example-uml.iuml)
+![use-case](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jonashackt/plantuml-markdown/master/use-case.iuml)
 
 ```puml
 @startuml
