@@ -114,7 +114,7 @@ participant "Système de Gestion des Cartes" as System
 
 Client -> Distributeur: Insérer la carte
 Distributeur -> System: Vérifier le crédit
-System --> Distributeur: Crédit disponible (>= 2D)
+System --> Distributeur: Crédit disponible (>= 2€)
 Distributeur --> Client: Crédit suffisant, sélectionnez une cassette
 
 Client -> Distributeur: Choisir une cassette
